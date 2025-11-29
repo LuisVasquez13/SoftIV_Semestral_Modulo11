@@ -115,8 +115,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCFacturacion.resx">
+      <DependentUpon>UCFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCOrdenLaboratorio.resx">
       <DependentUpon>UCOrdenLaboratorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCRegistroUrgencias.resx">
+      <DependentUpon>UCRegistroUrgencias.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
