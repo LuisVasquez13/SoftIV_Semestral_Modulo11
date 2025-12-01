@@ -115,7 +115,7 @@ namespace Borrador
 
                         case "btnAdministrativo":
                             //Modulo 11
-                            button.Tag = typeof(UCFacturacion);
+                            button.Tag = typeof(Modulo11);
                             //button.Image = Properties.Resources.icon_administrativo;
                             break;
 
