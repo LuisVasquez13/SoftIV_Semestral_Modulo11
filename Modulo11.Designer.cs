@@ -15,6 +15,9 @@ namespace Borrador
         private TabPage tabFacturacion;
         private TabPage tabCaja;
 
+        // Nuevo Título Facturación
+        private Label lblTituloF;
+
         private Label lblNumFacturaF;
         private TextBox txtNumFacturaF;
 
@@ -55,6 +58,9 @@ namespace Borrador
         private Button btnGuardarImprimirF;
 
         // Controles (Caja Pagos)
+        // Nuevo Título Caja
+        private Label lblTituloC;
+
         private Label lblNumFacturaC;
         private ComboBox cmbNumFacturaC;
 
@@ -99,9 +105,9 @@ namespace Borrador
 
         private void InitializeComponent()
         {
-
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFacturacion = new System.Windows.Forms.TabPage();
+            this.lblTituloF = new System.Windows.Forms.Label();
             this.lblNumFacturaF = new System.Windows.Forms.Label();
             this.txtNumFacturaF = new System.Windows.Forms.TextBox();
             this.lblPacienteF = new System.Windows.Forms.Label();
@@ -133,6 +139,7 @@ namespace Borrador
             this.btnCalcularF = new System.Windows.Forms.Button();
             this.btnGuardarImprimirF = new System.Windows.Forms.Button();
             this.tabCaja = new System.Windows.Forms.TabPage();
+            this.lblTituloC = new System.Windows.Forms.Label();
             this.lblNumFacturaC = new System.Windows.Forms.Label();
             this.cmbNumFacturaC = new System.Windows.Forms.ComboBox();
             this.lblPacienteC = new System.Windows.Forms.Label();
@@ -175,12 +182,15 @@ namespace Borrador
             this.tabControl.Location = new System.Drawing.Point(10, 10);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(836, 589);
+            this.tabControl.Size = new System.Drawing.Size(1339, 953);
             this.tabControl.TabIndex = 0;
             // 
             // tabFacturacion
             // 
             this.tabFacturacion.AutoScroll = true;
+            this.tabFacturacion.AutoScrollMinSize = new System.Drawing.Size(0, 1000);
+            this.tabFacturacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(200)))), ((int)(((byte)(242)))));
+            this.tabFacturacion.Controls.Add(this.lblTituloF);
             this.tabFacturacion.Controls.Add(this.lblNumFacturaF);
             this.tabFacturacion.Controls.Add(this.txtNumFacturaF);
             this.tabFacturacion.Controls.Add(this.lblPacienteF);
@@ -206,99 +216,127 @@ namespace Borrador
             this.tabFacturacion.Controls.Add(this.txtObservacionesF);
             this.tabFacturacion.Controls.Add(this.btnCalcularF);
             this.tabFacturacion.Controls.Add(this.btnGuardarImprimirF);
-            this.tabFacturacion.Location = new System.Drawing.Point(4, 22);
+            this.tabFacturacion.Location = new System.Drawing.Point(4, 25);
             this.tabFacturacion.Name = "tabFacturacion";
             this.tabFacturacion.Padding = new System.Windows.Forms.Padding(5);
-            this.tabFacturacion.Size = new System.Drawing.Size(828, 563);
+            this.tabFacturacion.Size = new System.Drawing.Size(1331, 924);
             this.tabFacturacion.TabIndex = 0;
             this.tabFacturacion.Text = "Facturación";
             // 
+            // lblTituloF
+            // 
+            this.lblTituloF.AutoSize = true;
+            this.lblTituloF.Font = new System.Drawing.Font("Segoe UI", 23F, System.Drawing.FontStyle.Bold);
+            this.lblTituloF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTituloF.Location = new System.Drawing.Point(28, 10);
+            this.lblTituloF.Name = "lblTituloF";
+            this.lblTituloF.Size = new System.Drawing.Size(289, 52);
+            this.lblTituloF.TabIndex = 0;
+            this.lblTituloF.Text = "FACTURACIÓN";
+            // 
             // lblNumFacturaF
             // 
-            this.lblNumFacturaF.Location = new System.Drawing.Point(30, 20);
+            this.lblNumFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblNumFacturaF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblNumFacturaF.Location = new System.Drawing.Point(30, 80);
             this.lblNumFacturaF.Name = "lblNumFacturaF";
             this.lblNumFacturaF.Size = new System.Drawing.Size(100, 23);
-            this.lblNumFacturaF.TabIndex = 0;
+            this.lblNumFacturaF.TabIndex = 1;
             this.lblNumFacturaF.Text = "N° Factura:";
             // 
             // txtNumFacturaF
             // 
-            this.txtNumFacturaF.Location = new System.Drawing.Point(150, 17);
+            this.txtNumFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtNumFacturaF.Location = new System.Drawing.Point(150, 77);
             this.txtNumFacturaF.Name = "txtNumFacturaF";
-            this.txtNumFacturaF.Size = new System.Drawing.Size(160, 20);
-            this.txtNumFacturaF.TabIndex = 1;
+            this.txtNumFacturaF.Size = new System.Drawing.Size(300, 30);
+            this.txtNumFacturaF.TabIndex = 2;
             // 
             // lblPacienteF
             // 
-            this.lblPacienteF.Location = new System.Drawing.Point(30, 60);
+            this.lblPacienteF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblPacienteF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPacienteF.Location = new System.Drawing.Point(30, 120);
             this.lblPacienteF.Name = "lblPacienteF";
             this.lblPacienteF.Size = new System.Drawing.Size(100, 23);
-            this.lblPacienteF.TabIndex = 2;
+            this.lblPacienteF.TabIndex = 3;
             this.lblPacienteF.Text = "Paciente (*):";
             // 
             // cmbPacienteF
             // 
             this.cmbPacienteF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPacienteF.Location = new System.Drawing.Point(150, 57);
+            this.cmbPacienteF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbPacienteF.Location = new System.Drawing.Point(150, 117);
             this.cmbPacienteF.Name = "cmbPacienteF";
-            this.cmbPacienteF.Size = new System.Drawing.Size(300, 21);
-            this.cmbPacienteF.TabIndex = 3;
+            this.cmbPacienteF.Size = new System.Drawing.Size(300, 31);
+            this.cmbPacienteF.TabIndex = 4;
             // 
             // lblAseguradoraF
             // 
-            this.lblAseguradoraF.Location = new System.Drawing.Point(30, 100);
+            this.lblAseguradoraF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblAseguradoraF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAseguradoraF.Location = new System.Drawing.Point(30, 160);
             this.lblAseguradoraF.Name = "lblAseguradoraF";
             this.lblAseguradoraF.Size = new System.Drawing.Size(100, 23);
-            this.lblAseguradoraF.TabIndex = 4;
+            this.lblAseguradoraF.TabIndex = 5;
             this.lblAseguradoraF.Text = "Aseguradora:";
             // 
             // cmbAseguradoraF
             // 
             this.cmbAseguradoraF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAseguradoraF.Location = new System.Drawing.Point(150, 97);
+            this.cmbAseguradoraF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbAseguradoraF.Location = new System.Drawing.Point(150, 157);
             this.cmbAseguradoraF.Name = "cmbAseguradoraF";
-            this.cmbAseguradoraF.Size = new System.Drawing.Size(300, 21);
-            this.cmbAseguradoraF.TabIndex = 5;
+            this.cmbAseguradoraF.Size = new System.Drawing.Size(300, 31);
+            this.cmbAseguradoraF.TabIndex = 6;
             // 
             // lblPolizaF
             // 
-            this.lblPolizaF.Location = new System.Drawing.Point(30, 140);
+            this.lblPolizaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblPolizaF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPolizaF.Location = new System.Drawing.Point(30, 200);
             this.lblPolizaF.Name = "lblPolizaF";
             this.lblPolizaF.Size = new System.Drawing.Size(100, 23);
-            this.lblPolizaF.TabIndex = 6;
+            this.lblPolizaF.TabIndex = 7;
             this.lblPolizaF.Text = "N° Póliza:";
             // 
             // txtPolizaF
             // 
-            this.txtPolizaF.Location = new System.Drawing.Point(150, 137);
+            this.txtPolizaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtPolizaF.Location = new System.Drawing.Point(150, 197);
             this.txtPolizaF.Name = "txtPolizaF";
-            this.txtPolizaF.Size = new System.Drawing.Size(220, 20);
-            this.txtPolizaF.TabIndex = 7;
+            this.txtPolizaF.Size = new System.Drawing.Size(300, 30);
+            this.txtPolizaF.TabIndex = 8;
             // 
             // lblFechaFacturaF
             // 
-            this.lblFechaFacturaF.Location = new System.Drawing.Point(30, 180);
+            this.lblFechaFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblFechaFacturaF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFechaFacturaF.Location = new System.Drawing.Point(30, 240);
             this.lblFechaFacturaF.Name = "lblFechaFacturaF";
-            this.lblFechaFacturaF.Size = new System.Drawing.Size(100, 23);
-            this.lblFechaFacturaF.TabIndex = 8;
+            this.lblFechaFacturaF.Size = new System.Drawing.Size(120, 23);
+            this.lblFechaFacturaF.TabIndex = 9;
             this.lblFechaFacturaF.Text = "Fecha Factura (*):";
             // 
             // dtpFechaFacturaF
             // 
             this.dtpFechaFacturaF.CustomFormat = "yyyy-MM-dd HH:mm";
+            this.dtpFechaFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtpFechaFacturaF.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaFacturaF.Location = new System.Drawing.Point(150, 177);
+            this.dtpFechaFacturaF.Location = new System.Drawing.Point(150, 237);
             this.dtpFechaFacturaF.Name = "dtpFechaFacturaF";
-            this.dtpFechaFacturaF.Size = new System.Drawing.Size(220, 20);
-            this.dtpFechaFacturaF.TabIndex = 9;
+            this.dtpFechaFacturaF.Size = new System.Drawing.Size(300, 30);
+            this.dtpFechaFacturaF.TabIndex = 10;
             // 
             // grpServiciosF
             // 
             this.grpServiciosF.Controls.Add(this.dgvServiciosF);
-            this.grpServiciosF.Location = new System.Drawing.Point(30, 225);
+            this.grpServiciosF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.grpServiciosF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grpServiciosF.Location = new System.Drawing.Point(30, 285);
             this.grpServiciosF.Name = "grpServiciosF";
             this.grpServiciosF.Size = new System.Drawing.Size(760, 220);
-            this.grpServiciosF.TabIndex = 10;
+            this.grpServiciosF.TabIndex = 11;
             this.grpServiciosF.TabStop = false;
             this.grpServiciosF.Text = "Servicios (Detalle)";
             // 
@@ -307,159 +345,200 @@ namespace Borrador
             this.dgvServiciosF.AllowUserToAddRows = false;
             this.dgvServiciosF.AllowUserToDeleteRows = false;
             this.dgvServiciosF.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvServiciosF.BackgroundColor = System.Drawing.Color.White;
+            this.dgvServiciosF.ColumnHeadersHeight = 29;
             this.dgvServiciosF.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.dgvServiciosF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvServiciosF.Location = new System.Drawing.Point(3, 16);
+            this.dgvServiciosF.Location = new System.Drawing.Point(3, 26);
             this.dgvServiciosF.MultiSelect = false;
             this.dgvServiciosF.Name = "dgvServiciosF";
             this.dgvServiciosF.ReadOnly = true;
             this.dgvServiciosF.RowHeadersVisible = false;
+            this.dgvServiciosF.RowHeadersWidth = 51;
             this.dgvServiciosF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServiciosF.Size = new System.Drawing.Size(754, 201);
+            this.dgvServiciosF.Size = new System.Drawing.Size(754, 191);
             this.dgvServiciosF.TabIndex = 0;
             this.dgvServiciosF.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvServiciosF_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Servicio";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Precio Unit.";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Subtotal";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // lblSubtotalF
             // 
-            this.lblSubtotalF.Location = new System.Drawing.Point(30, 460);
+            this.lblSubtotalF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblSubtotalF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblSubtotalF.Location = new System.Drawing.Point(30, 520);
             this.lblSubtotalF.Name = "lblSubtotalF";
             this.lblSubtotalF.Size = new System.Drawing.Size(100, 23);
-            this.lblSubtotalF.TabIndex = 11;
+            this.lblSubtotalF.TabIndex = 12;
             this.lblSubtotalF.Text = "Subtotal (*):";
             // 
             // txtSubtotalF
             // 
-            this.txtSubtotalF.Location = new System.Drawing.Point(150, 457);
+            this.txtSubtotalF.BackColor = System.Drawing.Color.White;
+            this.txtSubtotalF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSubtotalF.Location = new System.Drawing.Point(150, 517);
             this.txtSubtotalF.Name = "txtSubtotalF";
             this.txtSubtotalF.ReadOnly = true;
-            this.txtSubtotalF.Size = new System.Drawing.Size(120, 20);
-            this.txtSubtotalF.TabIndex = 12;
+            this.txtSubtotalF.Size = new System.Drawing.Size(300, 30);
+            this.txtSubtotalF.TabIndex = 13;
             // 
             // lblDescuentoF
             // 
-            this.lblDescuentoF.Location = new System.Drawing.Point(30, 500);
+            this.lblDescuentoF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblDescuentoF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDescuentoF.Location = new System.Drawing.Point(30, 560);
             this.lblDescuentoF.Name = "lblDescuentoF";
             this.lblDescuentoF.Size = new System.Drawing.Size(100, 23);
-            this.lblDescuentoF.TabIndex = 13;
+            this.lblDescuentoF.TabIndex = 14;
             this.lblDescuentoF.Text = "Descuento (%):";
             // 
             // nudDescuentoF
             // 
-            this.nudDescuentoF.Location = new System.Drawing.Point(150, 497);
+            this.nudDescuentoF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudDescuentoF.Location = new System.Drawing.Point(150, 557);
             this.nudDescuentoF.Name = "nudDescuentoF";
-            this.nudDescuentoF.Size = new System.Drawing.Size(90, 20);
-            this.nudDescuentoF.TabIndex = 14;
+            this.nudDescuentoF.Size = new System.Drawing.Size(300, 30);
+            this.nudDescuentoF.TabIndex = 15;
             // 
             // lblImpuestoF
             // 
-            this.lblImpuestoF.Location = new System.Drawing.Point(30, 540);
+            this.lblImpuestoF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblImpuestoF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblImpuestoF.Location = new System.Drawing.Point(30, 600);
             this.lblImpuestoF.Name = "lblImpuestoF";
             this.lblImpuestoF.Size = new System.Drawing.Size(100, 23);
-            this.lblImpuestoF.TabIndex = 15;
+            this.lblImpuestoF.TabIndex = 16;
             this.lblImpuestoF.Text = "Impuesto (%):";
             // 
             // nudImpuestoF
             // 
-            this.nudImpuestoF.Location = new System.Drawing.Point(150, 537);
+            this.nudImpuestoF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudImpuestoF.Location = new System.Drawing.Point(150, 597);
             this.nudImpuestoF.Name = "nudImpuestoF";
-            this.nudImpuestoF.Size = new System.Drawing.Size(90, 20);
-            this.nudImpuestoF.TabIndex = 16;
+            this.nudImpuestoF.Size = new System.Drawing.Size(300, 30);
+            this.nudImpuestoF.TabIndex = 17;
             // 
             // lblTotalF
             // 
-            this.lblTotalF.Location = new System.Drawing.Point(30, 580);
+            this.lblTotalF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblTotalF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTotalF.Location = new System.Drawing.Point(30, 640);
             this.lblTotalF.Name = "lblTotalF";
             this.lblTotalF.Size = new System.Drawing.Size(100, 23);
-            this.lblTotalF.TabIndex = 17;
+            this.lblTotalF.TabIndex = 18;
             this.lblTotalF.Text = "Total (*):";
             // 
             // txtTotalF
             // 
-            this.txtTotalF.Location = new System.Drawing.Point(150, 577);
+            this.txtTotalF.BackColor = System.Drawing.Color.White;
+            this.txtTotalF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtTotalF.Location = new System.Drawing.Point(150, 637);
             this.txtTotalF.Name = "txtTotalF";
             this.txtTotalF.ReadOnly = true;
-            this.txtTotalF.Size = new System.Drawing.Size(120, 20);
-            this.txtTotalF.TabIndex = 18;
+            this.txtTotalF.Size = new System.Drawing.Size(300, 30);
+            this.txtTotalF.TabIndex = 19;
             // 
             // lblEstadoFacturaF
             // 
-            this.lblEstadoFacturaF.Location = new System.Drawing.Point(30, 620);
+            this.lblEstadoFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblEstadoFacturaF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblEstadoFacturaF.Location = new System.Drawing.Point(30, 680);
             this.lblEstadoFacturaF.Name = "lblEstadoFacturaF";
-            this.lblEstadoFacturaF.Size = new System.Drawing.Size(100, 23);
-            this.lblEstadoFacturaF.TabIndex = 19;
+            this.lblEstadoFacturaF.Size = new System.Drawing.Size(120, 23);
+            this.lblEstadoFacturaF.TabIndex = 20;
             this.lblEstadoFacturaF.Text = "Estado factura (*):";
             // 
             // cmbEstadoFacturaF
             // 
             this.cmbEstadoFacturaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstadoFacturaF.Location = new System.Drawing.Point(150, 617);
+            this.cmbEstadoFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEstadoFacturaF.Location = new System.Drawing.Point(150, 677);
             this.cmbEstadoFacturaF.Name = "cmbEstadoFacturaF";
-            this.cmbEstadoFacturaF.Size = new System.Drawing.Size(150, 21);
-            this.cmbEstadoFacturaF.TabIndex = 20;
+            this.cmbEstadoFacturaF.Size = new System.Drawing.Size(300, 31);
+            this.cmbEstadoFacturaF.TabIndex = 21;
             // 
             // lblObservacionesF
             // 
-            this.lblObservacionesF.Location = new System.Drawing.Point(30, 660);
+            this.lblObservacionesF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblObservacionesF.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblObservacionesF.Location = new System.Drawing.Point(30, 720);
             this.lblObservacionesF.Name = "lblObservacionesF";
             this.lblObservacionesF.Size = new System.Drawing.Size(100, 23);
-            this.lblObservacionesF.TabIndex = 21;
+            this.lblObservacionesF.TabIndex = 22;
             this.lblObservacionesF.Text = "Observaciones:";
             // 
             // txtObservacionesF
             // 
-            this.txtObservacionesF.Location = new System.Drawing.Point(150, 657);
+            this.txtObservacionesF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtObservacionesF.Location = new System.Drawing.Point(150, 717);
             this.txtObservacionesF.Multiline = true;
             this.txtObservacionesF.Name = "txtObservacionesF";
             this.txtObservacionesF.Size = new System.Drawing.Size(500, 70);
-            this.txtObservacionesF.TabIndex = 22;
+            this.txtObservacionesF.TabIndex = 23;
             // 
             // btnCalcularF
             // 
-            this.btnCalcularF.Location = new System.Drawing.Point(30, 740);
+            this.btnCalcularF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(95)))), ((int)(((byte)(166)))));
+            this.btnCalcularF.FlatAppearance.BorderSize = 0;
+            this.btnCalcularF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalcularF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCalcularF.ForeColor = System.Drawing.Color.White;
+            this.btnCalcularF.Location = new System.Drawing.Point(48, 800);
             this.btnCalcularF.Name = "btnCalcularF";
-            this.btnCalcularF.Size = new System.Drawing.Size(120, 30);
-            this.btnCalcularF.TabIndex = 23;
+            this.btnCalcularF.Size = new System.Drawing.Size(182, 35);
+            this.btnCalcularF.TabIndex = 24;
             this.btnCalcularF.Text = "Calcular";
+            this.btnCalcularF.UseVisualStyleBackColor = false;
             // 
             // btnGuardarImprimirF
             // 
-            this.btnGuardarImprimirF.Location = new System.Drawing.Point(170, 740);
+            this.btnGuardarImprimirF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(95)))), ((int)(((byte)(166)))));
+            this.btnGuardarImprimirF.FlatAppearance.BorderSize = 0;
+            this.btnGuardarImprimirF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarImprimirF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGuardarImprimirF.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarImprimirF.Location = new System.Drawing.Point(321, 800);
             this.btnGuardarImprimirF.Name = "btnGuardarImprimirF";
-            this.btnGuardarImprimirF.Size = new System.Drawing.Size(160, 30);
-            this.btnGuardarImprimirF.TabIndex = 24;
+            this.btnGuardarImprimirF.Size = new System.Drawing.Size(245, 35);
+            this.btnGuardarImprimirF.TabIndex = 25;
             this.btnGuardarImprimirF.Text = "Guardar / Imprimir";
+            this.btnGuardarImprimirF.UseVisualStyleBackColor = false;
             // 
             // tabCaja
             // 
             this.tabCaja.AutoScroll = true;
+            this.tabCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(200)))), ((int)(((byte)(242)))));
+            this.tabCaja.Controls.Add(this.lblTituloC);
             this.tabCaja.Controls.Add(this.lblNumFacturaC);
             this.tabCaja.Controls.Add(this.cmbNumFacturaC);
             this.tabCaja.Controls.Add(this.lblPacienteC);
@@ -482,194 +561,262 @@ namespace Borrador
             this.tabCaja.Controls.Add(this.cmbEstadoPagoC);
             this.tabCaja.Controls.Add(this.btnRegistrarPagoC);
             this.tabCaja.Controls.Add(this.btnImprimirReciboC);
-            this.tabCaja.Location = new System.Drawing.Point(4, 22);
+            this.tabCaja.Location = new System.Drawing.Point(4, 25);
             this.tabCaja.Name = "tabCaja";
             this.tabCaja.Padding = new System.Windows.Forms.Padding(5);
-            this.tabCaja.Size = new System.Drawing.Size(828, 563);
+            this.tabCaja.Size = new System.Drawing.Size(1331, 924);
             this.tabCaja.TabIndex = 1;
             this.tabCaja.Text = "Caja Pagos";
             // 
+            // lblTituloC
+            // 
+            this.lblTituloC.AutoSize = true;
+            this.lblTituloC.Font = new System.Drawing.Font("Segoe UI", 23F, System.Drawing.FontStyle.Bold);
+            this.lblTituloC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTituloC.Location = new System.Drawing.Point(28, 10);
+            this.lblTituloC.Name = "lblTituloC";
+            this.lblTituloC.Size = new System.Drawing.Size(257, 52);
+            this.lblTituloC.TabIndex = 0;
+            this.lblTituloC.Text = "CAJA PAGOS";
+            // 
             // lblNumFacturaC
             // 
-            this.lblNumFacturaC.Location = new System.Drawing.Point(30, 20);
+            this.lblNumFacturaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblNumFacturaC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblNumFacturaC.Location = new System.Drawing.Point(21, 98);
             this.lblNumFacturaC.Name = "lblNumFacturaC";
-            this.lblNumFacturaC.Size = new System.Drawing.Size(100, 23);
-            this.lblNumFacturaC.TabIndex = 0;
+            this.lblNumFacturaC.Size = new System.Drawing.Size(134, 23);
+            this.lblNumFacturaC.TabIndex = 1;
             this.lblNumFacturaC.Text = "N° Factura (*):";
             // 
             // cmbNumFacturaC
             // 
-            this.cmbNumFacturaC.Location = new System.Drawing.Point(170, 17);
+            this.cmbNumFacturaC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNumFacturaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbNumFacturaC.Location = new System.Drawing.Point(186, 95);
             this.cmbNumFacturaC.Name = "cmbNumFacturaC";
-            this.cmbNumFacturaC.Size = new System.Drawing.Size(200, 21);
-            this.cmbNumFacturaC.TabIndex = 1;
+            this.cmbNumFacturaC.Size = new System.Drawing.Size(301, 31);
+            this.cmbNumFacturaC.TabIndex = 2;
+            this.cmbNumFacturaC.SelectedIndexChanged += new System.EventHandler(this.cmbNumFacturaC_SelectedIndexChanged_1);
             // 
             // lblPacienteC
             // 
-            this.lblPacienteC.Location = new System.Drawing.Point(30, 60);
+            this.lblPacienteC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblPacienteC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPacienteC.Location = new System.Drawing.Point(21, 138);
             this.lblPacienteC.Name = "lblPacienteC";
             this.lblPacienteC.Size = new System.Drawing.Size(100, 23);
-            this.lblPacienteC.TabIndex = 2;
+            this.lblPacienteC.TabIndex = 3;
             this.lblPacienteC.Text = "Paciente:";
             // 
             // txtPacienteC
             // 
-            this.txtPacienteC.Location = new System.Drawing.Point(170, 57);
+            this.txtPacienteC.BackColor = System.Drawing.Color.White;
+            this.txtPacienteC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtPacienteC.Location = new System.Drawing.Point(187, 135);
             this.txtPacienteC.Name = "txtPacienteC";
             this.txtPacienteC.ReadOnly = true;
-            this.txtPacienteC.Size = new System.Drawing.Size(300, 20);
-            this.txtPacienteC.TabIndex = 3;
+            this.txtPacienteC.Size = new System.Drawing.Size(300, 30);
+            this.txtPacienteC.TabIndex = 4;
+            this.txtPacienteC.TextChanged += new System.EventHandler(this.txtPacienteC_TextChanged);
             // 
             // lblTotalFacturaC
             // 
-            this.lblTotalFacturaC.Location = new System.Drawing.Point(30, 100);
+            this.lblTotalFacturaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblTotalFacturaC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTotalFacturaC.Location = new System.Drawing.Point(21, 178);
             this.lblTotalFacturaC.Name = "lblTotalFacturaC";
-            this.lblTotalFacturaC.Size = new System.Drawing.Size(100, 23);
-            this.lblTotalFacturaC.TabIndex = 4;
+            this.lblTotalFacturaC.Size = new System.Drawing.Size(168, 23);
+            this.lblTotalFacturaC.TabIndex = 5;
             this.lblTotalFacturaC.Text = "Monto total factura:";
             // 
             // txtTotalFacturaC
             // 
-            this.txtTotalFacturaC.Location = new System.Drawing.Point(170, 97);
+            this.txtTotalFacturaC.BackColor = System.Drawing.Color.White;
+            this.txtTotalFacturaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtTotalFacturaC.Location = new System.Drawing.Point(187, 175);
             this.txtTotalFacturaC.Name = "txtTotalFacturaC";
             this.txtTotalFacturaC.ReadOnly = true;
-            this.txtTotalFacturaC.Size = new System.Drawing.Size(140, 20);
-            this.txtTotalFacturaC.TabIndex = 5;
+            this.txtTotalFacturaC.Size = new System.Drawing.Size(300, 30);
+            this.txtTotalFacturaC.TabIndex = 6;
+            this.txtTotalFacturaC.TextChanged += new System.EventHandler(this.txtTotalFacturaC_TextChanged);
             // 
             // lblMontoPagadoC
             // 
-            this.lblMontoPagadoC.Location = new System.Drawing.Point(30, 140);
+            this.lblMontoPagadoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblMontoPagadoC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMontoPagadoC.Location = new System.Drawing.Point(21, 218);
             this.lblMontoPagadoC.Name = "lblMontoPagadoC";
-            this.lblMontoPagadoC.Size = new System.Drawing.Size(100, 23);
-            this.lblMontoPagadoC.TabIndex = 6;
+            this.lblMontoPagadoC.Size = new System.Drawing.Size(154, 23);
+            this.lblMontoPagadoC.TabIndex = 7;
             this.lblMontoPagadoC.Text = "Monto ya pagado:";
             // 
             // txtMontoPagadoC
             // 
-            this.txtMontoPagadoC.Location = new System.Drawing.Point(170, 137);
+            this.txtMontoPagadoC.BackColor = System.Drawing.Color.White;
+            this.txtMontoPagadoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtMontoPagadoC.Location = new System.Drawing.Point(187, 215);
             this.txtMontoPagadoC.Name = "txtMontoPagadoC";
             this.txtMontoPagadoC.ReadOnly = true;
-            this.txtMontoPagadoC.Size = new System.Drawing.Size(140, 20);
-            this.txtMontoPagadoC.TabIndex = 7;
+            this.txtMontoPagadoC.Size = new System.Drawing.Size(300, 30);
+            this.txtMontoPagadoC.TabIndex = 8;
+            this.txtMontoPagadoC.TextChanged += new System.EventHandler(this.txtMontoPagadoC_TextChanged);
             // 
             // lblMontoPagarC
             // 
-            this.lblMontoPagarC.Location = new System.Drawing.Point(30, 180);
+            this.lblMontoPagarC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblMontoPagarC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMontoPagarC.Location = new System.Drawing.Point(21, 258);
             this.lblMontoPagarC.Name = "lblMontoPagarC";
-            this.lblMontoPagarC.Size = new System.Drawing.Size(100, 23);
-            this.lblMontoPagarC.TabIndex = 8;
+            this.lblMontoPagarC.Size = new System.Drawing.Size(168, 23);
+            this.lblMontoPagarC.TabIndex = 9;
             this.lblMontoPagarC.Text = "Monto a pagar (*):";
             // 
             // nudMontoPagarC
             // 
             this.nudMontoPagarC.DecimalPlaces = 2;
-            this.nudMontoPagarC.Location = new System.Drawing.Point(170, 177);
+            this.nudMontoPagarC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudMontoPagarC.Location = new System.Drawing.Point(187, 255);
             this.nudMontoPagarC.Name = "nudMontoPagarC";
-            this.nudMontoPagarC.Size = new System.Drawing.Size(140, 20);
-            this.nudMontoPagarC.TabIndex = 9;
+            this.nudMontoPagarC.Size = new System.Drawing.Size(300, 30);
+            this.nudMontoPagarC.TabIndex = 10;
+            this.nudMontoPagarC.ValueChanged += new System.EventHandler(this.nudMontoPagarC_ValueChanged);
             // 
             // lblFormaPagoC
             // 
-            this.lblFormaPagoC.Location = new System.Drawing.Point(30, 220);
+            this.lblFormaPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblFormaPagoC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFormaPagoC.Location = new System.Drawing.Point(21, 298);
             this.lblFormaPagoC.Name = "lblFormaPagoC";
-            this.lblFormaPagoC.Size = new System.Drawing.Size(100, 23);
-            this.lblFormaPagoC.TabIndex = 10;
+            this.lblFormaPagoC.Size = new System.Drawing.Size(168, 23);
+            this.lblFormaPagoC.TabIndex = 11;
             this.lblFormaPagoC.Text = "Forma de pago (*):";
             // 
             // cmbFormaPagoC
             // 
             this.cmbFormaPagoC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFormaPagoC.Location = new System.Drawing.Point(170, 217);
+            this.cmbFormaPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbFormaPagoC.Location = new System.Drawing.Point(187, 295);
             this.cmbFormaPagoC.Name = "cmbFormaPagoC";
-            this.cmbFormaPagoC.Size = new System.Drawing.Size(200, 21);
-            this.cmbFormaPagoC.TabIndex = 11;
+            this.cmbFormaPagoC.Size = new System.Drawing.Size(300, 31);
+            this.cmbFormaPagoC.TabIndex = 12;
+            this.cmbFormaPagoC.SelectedIndexChanged += new System.EventHandler(this.cmbFormaPagoC_SelectedIndexChanged);
             // 
             // lblFechaPagoC
             // 
-            this.lblFechaPagoC.Location = new System.Drawing.Point(30, 260);
+            this.lblFechaPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblFechaPagoC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFechaPagoC.Location = new System.Drawing.Point(21, 338);
             this.lblFechaPagoC.Name = "lblFechaPagoC";
-            this.lblFechaPagoC.Size = new System.Drawing.Size(100, 23);
-            this.lblFechaPagoC.TabIndex = 12;
+            this.lblFechaPagoC.Size = new System.Drawing.Size(134, 23);
+            this.lblFechaPagoC.TabIndex = 13;
             this.lblFechaPagoC.Text = "Fecha pago (*):";
             // 
             // dtpFechaPagoC
             // 
             this.dtpFechaPagoC.CustomFormat = "yyyy-MM-dd HH:mm";
+            this.dtpFechaPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtpFechaPagoC.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaPagoC.Location = new System.Drawing.Point(170, 257);
+            this.dtpFechaPagoC.Location = new System.Drawing.Point(187, 335);
             this.dtpFechaPagoC.Name = "dtpFechaPagoC";
-            this.dtpFechaPagoC.Size = new System.Drawing.Size(200, 20);
-            this.dtpFechaPagoC.TabIndex = 13;
+            this.dtpFechaPagoC.Size = new System.Drawing.Size(300, 30);
+            this.dtpFechaPagoC.TabIndex = 14;
+            this.dtpFechaPagoC.ValueChanged += new System.EventHandler(this.dtpFechaPagoC_ValueChanged);
             // 
             // lblReferenciaC
             // 
-            this.lblReferenciaC.Location = new System.Drawing.Point(30, 300);
+            this.lblReferenciaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblReferenciaC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblReferenciaC.Location = new System.Drawing.Point(21, 378);
             this.lblReferenciaC.Name = "lblReferenciaC";
-            this.lblReferenciaC.Size = new System.Drawing.Size(100, 23);
-            this.lblReferenciaC.TabIndex = 14;
+            this.lblReferenciaC.Size = new System.Drawing.Size(108, 23);
+            this.lblReferenciaC.TabIndex = 15;
             this.lblReferenciaC.Text = "Referencia:";
             // 
             // txtReferenciaC
             // 
-            this.txtReferenciaC.Location = new System.Drawing.Point(170, 297);
+            this.txtReferenciaC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtReferenciaC.Location = new System.Drawing.Point(186, 375);
             this.txtReferenciaC.Name = "txtReferenciaC";
-            this.txtReferenciaC.Size = new System.Drawing.Size(240, 20);
-            this.txtReferenciaC.TabIndex = 15;
+            this.txtReferenciaC.Size = new System.Drawing.Size(301, 30);
+            this.txtReferenciaC.TabIndex = 16;
+            this.txtReferenciaC.TextChanged += new System.EventHandler(this.txtReferenciaC_TextChanged);
             // 
             // lblObservacionesC
             // 
-            this.lblObservacionesC.Location = new System.Drawing.Point(30, 340);
+            this.lblObservacionesC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblObservacionesC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblObservacionesC.Location = new System.Drawing.Point(21, 496);
             this.lblObservacionesC.Name = "lblObservacionesC";
-            this.lblObservacionesC.Size = new System.Drawing.Size(100, 23);
-            this.lblObservacionesC.TabIndex = 16;
+            this.lblObservacionesC.Size = new System.Drawing.Size(134, 27);
+            this.lblObservacionesC.TabIndex = 17;
             this.lblObservacionesC.Text = "Observaciones:";
             // 
             // txtObservacionesC
             // 
-            this.txtObservacionesC.Location = new System.Drawing.Point(170, 337);
+            this.txtObservacionesC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtObservacionesC.Location = new System.Drawing.Point(186, 430);
             this.txtObservacionesC.Multiline = true;
             this.txtObservacionesC.Name = "txtObservacionesC";
-            this.txtObservacionesC.Size = new System.Drawing.Size(480, 70);
-            this.txtObservacionesC.TabIndex = 17;
+            this.txtObservacionesC.Size = new System.Drawing.Size(735, 151);
+            this.txtObservacionesC.TabIndex = 18;
+            this.txtObservacionesC.TextChanged += new System.EventHandler(this.txtObservacionesC_TextChanged);
             // 
             // lblEstadoPagoC
             // 
-            this.lblEstadoPagoC.Location = new System.Drawing.Point(30, 420);
+            this.lblEstadoPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblEstadoPagoC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblEstadoPagoC.Location = new System.Drawing.Point(21, 606);
             this.lblEstadoPagoC.Name = "lblEstadoPagoC";
             this.lblEstadoPagoC.Size = new System.Drawing.Size(100, 23);
-            this.lblEstadoPagoC.TabIndex = 18;
+            this.lblEstadoPagoC.TabIndex = 19;
             this.lblEstadoPagoC.Text = "Estado:";
             // 
             // cmbEstadoPagoC
             // 
-            this.cmbEstadoPagoC.Location = new System.Drawing.Point(170, 417);
+            this.cmbEstadoPagoC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEstadoPagoC.Location = new System.Drawing.Point(186, 603);
             this.cmbEstadoPagoC.Name = "cmbEstadoPagoC";
-            this.cmbEstadoPagoC.Size = new System.Drawing.Size(150, 21);
-            this.cmbEstadoPagoC.TabIndex = 19;
+            this.cmbEstadoPagoC.Size = new System.Drawing.Size(301, 31);
+            this.cmbEstadoPagoC.TabIndex = 20;
+            this.cmbEstadoPagoC.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoPagoC_SelectedIndexChanged);
             // 
             // btnRegistrarPagoC
             // 
-            this.btnRegistrarPagoC.Location = new System.Drawing.Point(30, 460);
+            this.btnRegistrarPagoC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(95)))), ((int)(((byte)(166)))));
+            this.btnRegistrarPagoC.FlatAppearance.BorderSize = 0;
+            this.btnRegistrarPagoC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarPagoC.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRegistrarPagoC.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrarPagoC.Location = new System.Drawing.Point(412, 650);
             this.btnRegistrarPagoC.Name = "btnRegistrarPagoC";
-            this.btnRegistrarPagoC.Size = new System.Drawing.Size(140, 30);
-            this.btnRegistrarPagoC.TabIndex = 20;
+            this.btnRegistrarPagoC.Size = new System.Drawing.Size(237, 48);
+            this.btnRegistrarPagoC.TabIndex = 21;
             this.btnRegistrarPagoC.Text = "Registrar Pago";
+            this.btnRegistrarPagoC.UseVisualStyleBackColor = false;
             // 
             // btnImprimirReciboC
             // 
-            this.btnImprimirReciboC.Location = new System.Drawing.Point(180, 460);
+            this.btnImprimirReciboC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(95)))), ((int)(((byte)(166)))));
+            this.btnImprimirReciboC.FlatAppearance.BorderSize = 0;
+            this.btnImprimirReciboC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimirReciboC.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnImprimirReciboC.ForeColor = System.Drawing.Color.White;
+            this.btnImprimirReciboC.Location = new System.Drawing.Point(680, 650);
             this.btnImprimirReciboC.Name = "btnImprimirReciboC";
-            this.btnImprimirReciboC.Size = new System.Drawing.Size(140, 30);
-            this.btnImprimirReciboC.TabIndex = 21;
+            this.btnImprimirReciboC.Size = new System.Drawing.Size(241, 48);
+            this.btnImprimirReciboC.TabIndex = 22;
             this.btnImprimirReciboC.Text = "Imprimir Recibo";
+            this.btnImprimirReciboC.UseVisualStyleBackColor = false;
             // 
             // Modulo11
             // 
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(46)))), ((int)(((byte)(89)))));
             this.Controls.Add(this.tabControl);
             this.Name = "Modulo11";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(856, 609);
+            this.Size = new System.Drawing.Size(1359, 973);
             this.tabControl.ResumeLayout(false);
             this.tabFacturacion.ResumeLayout(false);
             this.tabFacturacion.PerformLayout();
