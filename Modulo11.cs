@@ -1,11 +1,14 @@
 ﻿
+using Azure;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -13,17 +16,18 @@ namespace Borrador
 {
     public partial class Modulo11 : UserControl
     {
-        private ConeccionSqlAdministracion conn = new ConeccionSqlAdministracion();
+
+        private ConexionSqlAdministracion conn = new ConexionSqlAdministracion();
         private List<DetalleFactura> listaDetalles = new List<DetalleFactura>();
         private int UltimaFacturaId = 0;
         public Modulo11()
         {
-            //ConexionDB.Instancia.ConstruirCadenaConexionSQL("", "ClinicaPro2", "", "");
             InitializeComponent();
             ConfigurarEventos();
             CargarDatos();
         }
 
+        // Carga todos los datos del formualrio cada vez que se selecciona
         private void CargarDatos()
         {
             List<ComboBoxItem> listaPacientes = conn.ObtenerPacientes();
@@ -31,6 +35,7 @@ namespace Borrador
             List<ComboBoxItem> listaFacturas = conn.ObtenerFacturas();
             DataTable tablaServicios = conn.ObtenerServicios();
 
+            // Hace un loop a cada ComboBox y añade los items de la lista
             foreach (ComboBoxItem s in listaPacientes)
             {
                 cmbPacienteF.Items.Add(s);
@@ -45,15 +50,28 @@ namespace Borrador
                 cmbNumFacturaC.Items.Add(s);
             }
 
+            // Crea el dataGrid en donde iran los servicios
+            crearDatagrid(tablaServicios);
+        }
+
+        private void crearDatagrid(DataTable tablaServicios)
+        {
+
             dgvServiciosF.Columns.Clear();
+
             tablaServicios.Columns["Servicio"].ReadOnly = true;
             tablaServicios.Columns["Cantidad"].ReadOnly = false;
             tablaServicios.Columns["Precio Unit."].ReadOnly = true;
-            tablaServicios.Columns["Subtotal"].ReadOnly = true;
+            tablaServicios.Columns["Subtotal"].ReadOnly = false;
+
+            tablaServicios.Columns["Cantidad"].DataType = typeof(int);
+
             dgvServiciosF.ReadOnly = false;
             dgvServiciosF.DataSource = tablaServicios;
+
         }
 
+        // Configura todos los eventos manualmente del forms
         private void ConfigurarEventos()
         {
             btnCalcularF.Click += BtnCalcularF_Click;
@@ -61,8 +79,10 @@ namespace Borrador
             cmbNumFacturaC.SelectedIndexChanged += CmbNumFacturaC_SelectedIndexChanged;
             btnRegistrarPagoC.Click += BtnRegistrarPagoC_Click;
             btnImprimirReciboC.Click += BtnImprimirReciboC_Click;
+            dgvServiciosF.EditingControlShowing += dgvServiciosF_EditingControlShowing;
         }
 
+        // Calcula los costos de los servicios del hospital
         private void BtnCalcularF_Click(object sender, EventArgs e)
         {
             listaDetalles.Clear();
@@ -74,7 +94,7 @@ namespace Borrador
                 decimal cantidad = 0, precio = 0;
                 decimal.TryParse(Convert.ToString(row.Cells[1].Value), out cantidad);
                 decimal.TryParse(Convert.ToString(row.Cells[2].Value), out precio);
-                //row.Cells[3].Value = (cantidad * precio);
+                row.Cells[3].Value = (cantidad * precio);
                 subtotal += cantidad * precio;
                 if (cantidad > 0)
                 {
@@ -95,8 +115,11 @@ namespace Borrador
             txtTotalF.Text = (subtotal - desc + imp).ToString("0.00");
         }
 
+        // Guarda la factura
         private void BtnGuardarImprimirF_Click(object sender, EventArgs e)
         {
+            if (!inputValidadosFactura()) { MessageBox.Show("No todos los campos están llenos", "OK", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+
             float subtotal = float.Parse(txtSubtotalF.Text);
             UltimaFacturaId = conn.AnadirFactura(new Factura(
                                 txtNumFacturaF.Text,
@@ -119,8 +142,10 @@ namespace Borrador
             MessageBox.Show("Factura guardada e impresa (simulado)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Al cambiar el número de factura en caja se cargan los datos financieros de ese paciente
         private void CmbNumFacturaC_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             PacienteDatosCajaRetorno pacienteDatos = conn.ObtenerFactura(((ComboBoxItem)cmbNumFacturaC.SelectedItem).IdValor.ToString());
             txtPacienteC.Text = pacienteDatos.Nombre;
             txtTotalFacturaC.Text = pacienteDatos.Monto.ToString();
@@ -129,6 +154,8 @@ namespace Borrador
 
         private void BtnRegistrarPagoC_Click(object sender, EventArgs e)
         {
+            if (!inputValidadosCaja()) { MessageBox.Show("No todos los campos están llenos", "OK", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+
             Pago pago = new Pago(
                 ((ComboBoxItem)cmbNumFacturaC.SelectedItem).IdValor,
                 Convert.ToDecimal(nudMontoPagarC.Value),
@@ -144,7 +171,63 @@ namespace Borrador
 
         private void BtnImprimirReciboC_Click(object sender, EventArgs e)
         {
+            if (!inputValidadosCaja()) { MessageBox.Show("No todos los campos están llenos", "OK", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+
+            Pago pago = new Pago(
+                                ((ComboBoxItem)cmbNumFacturaC.SelectedItem).IdValor,
+                                Convert.ToDecimal(nudMontoPagarC.Value),
+                                (string)cmbFormaPagoC.SelectedItem,
+                                dtpFechaPagoC.Text,
+                                txtReferenciaC.Text,
+                                (string)cmbEstadoPagoC.SelectedItem,
+                                txtObservacionesC.Text
+                                );
+            conn.ToPdf("Factura pago", pago, txtPacienteC.Text, txtTotalFacturaC.Text);
             MessageBox.Show("Recibo impreso (simulado)", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Válidación de los inpus
+        private bool inputValidadosFactura()
+        {
+
+            return !string.IsNullOrEmpty(txtNumFacturaF.Text) &&
+                    cmbPacienteF.SelectedIndex > -1 &&
+                    cmbAseguradoraF.SelectedIndex > -1 &&
+                    !string.IsNullOrEmpty(txtPolizaF.Text) &&
+                    float.TryParse(txtTotalF.Text, out float result) &&
+                    cmbEstadoFacturaF.SelectedIndex > -1;
+        }
+
+        private bool inputValidadosCaja()
+        {
+            return nudMontoPagarC.Value > (decimal)0 &&
+                    cmbNumFacturaC.SelectedIndex > -1 &&
+                    cmbFormaPagoC.SelectedIndex > -1 &&
+                    !string.IsNullOrEmpty(txtReferenciaC.Text) &&
+                    cmbEstadoPagoC.SelectedIndex > -1;
+        }
+
+        // Permite solo números en la columna de cantidad
+        private void dgvServiciosF_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvServiciosF.CurrentCell.ColumnIndex == dgvServiciosF.Columns["Cantidad"].Index)
+            {
+                System.Windows.Forms.TextBox tb = e.Control as System.Windows.Forms.TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyNumbers_KeyPress;
+                    tb.KeyPress += OnlyNumbers_KeyPress;
+                }
+            }
+        }
+
+        private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo permite números y borrar(Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void dgvServiciosF_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -172,9 +255,20 @@ namespace Borrador
 
         }
 
+        // El método se encarga de revisar si el monto a pagar excede el monto que debe de pagar el paciente
         private void nudMontoPagarC_ValueChanged(object sender, EventArgs e)
         {
-
+            decimal existeValor;
+            if (!decimal.TryParse(txtTotalFacturaC.Text, out existeValor))
+            {
+                nudMontoPagarC.Value = 0;
+                return;
+            }
+            decimal montoMaximo = decimal.Parse(txtTotalFacturaC.Text) - decimal.Parse(txtMontoPagadoC.Text);
+            if (nudMontoPagarC.Value >= montoMaximo)
+            {
+                nudMontoPagarC.Value = montoMaximo;
+            }
         }
 
         private void cmbFormaPagoC_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,7 +296,13 @@ namespace Borrador
 
         }
 
-        private class ConeccionSqlAdministracion
+
+        /**************************************************************
+         ***************                       ************************
+         ***************   CLASE CONECCION SQL ************************
+         ***************                       ************************
+         **************************************************************/
+        private class ConexionSqlAdministracion
         {
 
             public void ConectarBaseDeDatos()
@@ -297,7 +397,7 @@ namespace Borrador
             }
 
 
-            // Obtiene la lista de todos los alumnos(utiliza una versión con menos datos de los alumnos)
+            // Obtiene la lista de todos los pacientes
             public List<ComboBoxItem> ObtenerPacientes()
             {
                 string comando = @"select idPaciente, Concat(Cedula, ' ', Nombre, ' ',Apellido) as Nombre from PACIENTES";
@@ -343,7 +443,7 @@ namespace Borrador
                                     on Pagos.IdFactura = FACTURAS.IdFactura
                                     inner join PACIENTES
                                     on FACTURAS.IdPaciente = PACIENTES.IdPaciente
-                                    where FACTURAS.idFactura = @idFactura
+                                    where FACTURAS.idFactura = @idFactura and FACTURAS.EstadoFactura != 'Pagada'
 									group by Pagos.IdFactura, FACTURAS.IdFactura, FACTURAS.IdPaciente, PACIENTES.Nombre, PACIENTES.Apellido, FACTURAS.Total;
                                     ";
                 SqlParameter[] parametros = { CrearParametro("idFactura", SqlDbType.Int) };
@@ -390,7 +490,109 @@ namespace Borrador
                     throw;
                 }
             }
+
+            /************ MÉTODOS PARA IMPRIMIR EN UN ARCHIVO ***************/
+            public void ToPdf(string Filename, Pago p, string nombrePaciente, string totalFactura)
+            {
+                var preview = new PrintPreviewDialog();
+                var pd = new System.Drawing.Printing.PrintDocument();
+                pd.PrintPage += (s, ev) =>
+                {
+                    float leftMargin = 40;
+                    float rightMargin = ev.MarginBounds.Right;
+                    float y = 40;
+
+                    // Increased font sizes
+                    var fontTitle = new Font("Segoe UI", 22, FontStyle.Bold);
+                    var fontHeader = new Font("Segoe UI", 14, FontStyle.Bold);
+                    var fontBody = new Font("Segoe UI", 13);
+                    var fontFooter = new Font("Segoe UI", 11, FontStyle.Italic);
+
+                    // --- Hospital Header ---
+                    ev.Graphics.DrawString("Hospital General - Factura de Pago", fontTitle, new SolidBrush(ColorTranslator.FromHtml("#3861b5")), leftMargin, y);
+                    y += 50;
+                    ev.Graphics.DrawLine(Pens.Black, leftMargin, y, rightMargin, y);
+                    y += 25;
+
+                    // --- Datos del paciente ---
+                    ev.Graphics.DrawString("Paciente:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(nombrePaciente, fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 30;
+
+                    ev.Graphics.DrawString("Id Factura:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(p.IdFactura.ToString(), fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 30;
+
+                    ev.Graphics.DrawString("N° Referencia:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(p.NumeroReferencia, fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 30;
+
+                    ev.Graphics.DrawString("Fecha:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(p.FechaPago, fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 30;
+
+                    // --- Estado antes de la tabla ---
+                    ev.Graphics.DrawString("Estado:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(p.EstadoPago, fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 50;
+
+                    // --- Sección de pagos tipo tabla ---
+                    int colWidth = 220;
+                    int rowHeight = 40;
+                    string[] headers = { "Forma de Pago", "Monto Pagado", "Total Factura" };
+                    string[] values = { p.FormaPago, p.MontoAPagar.ToString("C"), Convert.ToDecimal(totalFactura).ToString("C") };
+
+                    // Encabezados
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        Rectangle rect = new Rectangle((int)(leftMargin + i * colWidth), (int)y, colWidth, rowHeight);
+                        ev.Graphics.FillRectangle(Brushes.LightGray, rect);
+                        ev.Graphics.DrawRectangle(Pens.Black, rect);
+                        ev.Graphics.DrawString(headers[i], fontHeader, Brushes.Black, rect);
+                    }
+                    y += rowHeight;
+
+                    // Valores
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        Rectangle rect = new Rectangle((int)(leftMargin + i * colWidth), (int)y, colWidth, rowHeight);
+                        ev.Graphics.DrawRectangle(Pens.Black, rect);
+                        ev.Graphics.DrawString(values[i], fontBody, Brushes.Black, rect);
+                    }
+                    y += rowHeight + 50;
+
+                    // --- Observaciones ---
+                    ev.Graphics.DrawString("Observación:", fontHeader, Brushes.Black, leftMargin, y);
+                    ev.Graphics.DrawString(p.Observacion, fontBody, Brushes.Black, leftMargin + 180, y);
+                    y += 50;
+
+                    // --- Footer ---
+                    ev.Graphics.DrawLine(Pens.Black, leftMargin, y, rightMargin, y);
+                    y += 15;
+                    ev.Graphics.DrawString("Generado el: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+                                           fontFooter, Brushes.Gray, leftMargin, y);
+                    ev.Graphics.DrawString("Gracias por confiar en Hospital General", fontFooter, Brushes.Gray, rightMargin - 300, y);
+                };
+
+                preview.Document = pd;
+                try
+                {
+                    preview.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al preparar la impresión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
+
+
+        /**************************************************************
+         ***************                       ************************
+         ***************       CLASE DATOS     ************************
+         ***************                       ************************
+         **************************************************************/
 
         private class Pago
         {
@@ -488,8 +690,6 @@ namespace Borrador
             public string Estado;
             public string Observaciones;
 
-
-
             public Factura(string NFact, int idPaciente, int idAseguradora, string nroPoliza, string fecha, float subtotal, float descuento, float impuesto, float total, string estado, string observaciones)
             {
                 NroFactura = NFact;
@@ -510,4 +710,5 @@ namespace Borrador
 
 
     }
+
 }

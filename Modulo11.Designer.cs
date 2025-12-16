@@ -534,7 +534,7 @@ namespace Borrador
             this.btnGuardarImprimirF.Name = "btnGuardarImprimirF";
             this.btnGuardarImprimirF.Size = new System.Drawing.Size(245, 35);
             this.btnGuardarImprimirF.TabIndex = 25;
-            this.btnGuardarImprimirF.Text = "Guardar / Imprimir";
+            this.btnGuardarImprimirF.Text = "Guardar";
             this.btnGuardarImprimirF.UseVisualStyleBackColor = false;
             // 
             // tabCaja
