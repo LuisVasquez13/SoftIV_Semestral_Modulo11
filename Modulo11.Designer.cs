@@ -482,6 +482,9 @@ namespace Borrador
             // 
             this.cmbEstadoFacturaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstadoFacturaF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEstadoFacturaF.Items.AddRange(new object[] {
+            "Pagada",
+            "Pendiente"});
             this.cmbEstadoFacturaF.Location = new System.Drawing.Point(150, 677);
             this.cmbEstadoFacturaF.Name = "cmbEstadoFacturaF";
             this.cmbEstadoFacturaF.Size = new System.Drawing.Size(300, 31);
@@ -612,6 +615,7 @@ namespace Borrador
             // txtPacienteC
             // 
             this.txtPacienteC.BackColor = System.Drawing.Color.White;
+            this.txtPacienteC.Enabled = false;
             this.txtPacienteC.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtPacienteC.Location = new System.Drawing.Point(187, 135);
             this.txtPacienteC.Name = "txtPacienteC";
@@ -633,6 +637,7 @@ namespace Borrador
             // txtTotalFacturaC
             // 
             this.txtTotalFacturaC.BackColor = System.Drawing.Color.White;
+            this.txtTotalFacturaC.Enabled = false;
             this.txtTotalFacturaC.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtTotalFacturaC.Location = new System.Drawing.Point(187, 175);
             this.txtTotalFacturaC.Name = "txtTotalFacturaC";
@@ -654,6 +659,7 @@ namespace Borrador
             // txtMontoPagadoC
             // 
             this.txtMontoPagadoC.BackColor = System.Drawing.Color.White;
+            this.txtMontoPagadoC.Enabled = false;
             this.txtMontoPagadoC.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtMontoPagadoC.Location = new System.Drawing.Point(187, 215);
             this.txtMontoPagadoC.Name = "txtMontoPagadoC";
@@ -696,6 +702,10 @@ namespace Borrador
             // 
             this.cmbFormaPagoC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFormaPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbFormaPagoC.Items.AddRange(new object[] {
+            "Seguro",
+            "Efectivo",
+            "Tarjeta"});
             this.cmbFormaPagoC.Location = new System.Drawing.Point(187, 295);
             this.cmbFormaPagoC.Name = "cmbFormaPagoC";
             this.cmbFormaPagoC.Size = new System.Drawing.Size(300, 31);
@@ -776,6 +786,9 @@ namespace Borrador
             // 
             this.cmbEstadoPagoC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstadoPagoC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEstadoPagoC.Items.AddRange(new object[] {
+            "Cancelado",
+            "Parcial"});
             this.cmbEstadoPagoC.Location = new System.Drawing.Point(186, 603);
             this.cmbEstadoPagoC.Name = "cmbEstadoPagoC";
             this.cmbEstadoPagoC.Size = new System.Drawing.Size(301, 31);
